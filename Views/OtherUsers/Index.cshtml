@@ -1,0 +1,54 @@
+﻿@model List<Items>
+@*
+   
+*@
+@{
+    int i = 0;
+}
+<h2>Pliki innych użytkowników</h2>
+<br />
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nazwa pliku</th>
+            <th scope="col">Data dodania</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model){
+            i++;
+            <tr>
+            <th scope="row">@i</th>
+            <td>@obj.FileName</td>
+            <td>@obj.UploadedDate</td>
+
+                @if (obj.IsViewable == true)
+                {
+                    <td> <a class="btn btn-info" asp-action="ViewFile" asp-controller="OtherUsers" asp-route-fn="@obj.FilePath">Podgląd</a></td>
+                }
+                else
+                {
+                    <td> <a class="btn btn-outline-dark disabled" asp-action="ViewFile" asp-controller="OtherUsers" asp-route-fn="@obj.FilePath" >Podgląd</a></td>
+
+                }
+                @if (obj.IsDownloadable == true)
+                {
+                    <td> <a class="btn btn-danger" asp-action="Download" asp-controller="OtherUsers" asp-route-fn="@obj.FilePath">Pobierz</a></td>
+                }
+                else
+                {
+                    <td> <a class="btn btn-outline-dark  disabled" asp-action="Download" asp-controller="OtherUsers" asp-route-fn="@obj.FilePath">Pobierz</a></td>
+
+                }
+       
+                <td> <a class="btn btn-primary" asp-action="AddComments" asp-route-id="@obj.id">Dodaj komentarz</a></td>
+                <td> <a class="btn btn-secondary" asp-action="ViewComments" asp-route-id="@obj.id">Zobacz komentarze</a></td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,21 @@
+﻿@model Commnents
+@*
+    
+*@
+@{
+}
+
+<br />
+<br />
+<form method="post" asp-action="AddNewComments">
+    <input asp-for="@Model.Itemid"  hidden/>
+    <input asp-for="@Model.UserName" hidden />
+    <div class="mb-3">
+        <label for="@Model.commnents" class="form-label">Your Comments</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" asp-for="@Model.commnents" required>
+      
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Dodaj</button>
+    <a class="btn btn-info" asp-action="Index" asp-controller="OtherUsers">Powrót</a>
+</form>

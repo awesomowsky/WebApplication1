@@ -1,0 +1,46 @@
+﻿@model List<Commnents>
+@*
+    
+*@
+@{
+}
+<h3>COMMENTS</h3>
+<br />
+@if (Model.Count > 0)
+{
+    <h5>@Model[0].Titlle</h5>
+}
+<table class="table">
+
+    <thead class="thead-dark">
+        <tr>
+         
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var obj in Model){
+        <tr>
+         
+            <td><b>@obj.UserName :</b> @obj.commnents</td>
+    
+        </tr>
+        }
+        
+    </tbody>
+</table>
+
+@if(Model.Count>0){
+@if (Model[0].typ == 0)
+{
+    <a class="btn btn-info" asp-action="Index" asp-controller="OtherUsers">Powrót</a>
+}
+else
+{
+    <a class="btn btn-info" asp-action="Index" asp-controller="Home">Powrót</a>
+
+}
+
+}
